@@ -1,0 +1,475 @@
+#include <iostream>
+#include <conio.h>
+#include <stdlib.h>
+#include <iomanip>
+using namespace std;
+int main()
+
+{
+    struct identitas
+		{
+			int kode;
+			char nama[20], nama_merk[50], j_b[20];
+			long isi,kirim,keluar, t_t, t_s, terima, kapasitas;
+		};
+	int a=-1;
+	identitas id[100];
+	char jawab, lagi, pass[6];
+	int n, t, input, menu,ma,mn;
+	{
+		menu:
+		system("cls");
+		m:
+		cout<<"\n+========================================+\n";
+		cout<<"|       Program Inventori Gudang         |\n";
+		cout<<"|         PT KHAYALAN SEMATA             |\n";
+		cout<<"+========================================+\n";
+		cout<<"\n";
+		cout<<"+==================================+\n";
+		cout<<"| 1. Menu Admin                    |\n";
+		cout<<"| 2. Menu Data Barang              |\n";
+		cout<<"| 3. Exit                          |\n";
+		cout<<"+==================================+\n";
+		cout<<"\nPilih Menu 1/2/3 : ";cin>>menu;
+		if (menu==1)
+			{
+				m_a:
+				system("cls");
+				tanya:
+				cout<<"\n+====================================+\n";
+				cout<<"|          Menu Admin Gudang         |\n";
+				cout<<"+====================================+\n";
+				cout<<"| 1. Input Info Barang               |\n";
+				cout<<"| 2. List Barang                     |\n";
+				cout<<"| 3. Laporan Masuk dan Keluar Barang |\n";
+				cout<<"| 4. Exit                            |\n";
+				cout<<"+======================================+\n";
+				cout<<"\n";
+				cout<<"Pilih Menu 1/2/3/4 : ";cin>>ma;
+				switch (ma)
+				{
+
+					case 1:
+						{
+							ma1:
+							a++;
+							system("cls");
+							cout<<"+================================================+\n";
+							cout<<"|                Input Info Barang               |\n";
+							cout<<"+================================================+\n";
+							cout<<"Catatan : Maksimal Karakter Kode Barang adalah 5"<<endl<<endl;
+							cout<<"+================================================+\n";
+							cout<<"Kode Barang      : ";cin>>id[a].kode;
+							cout<<"Nama Produk      : ";cin>>id[a].nama;
+							cout<<"Nama Merk        : ";cin>>id[a].nama_merk;
+							cout<<"Jenis Barang     : ";cin>>id[a].j_b;
+							cout<<"Kapasitas Gudang : ";cin>>id[a].kapasitas;
+							cout<<"\n";
+							cout<<"+=================================+\n";
+							cout<<"|     Data berhasil diproses      |\n";
+							cout<<"|                                 |\n";
+							cout<<"|           Terima kasih          |\n";
+							cout<<"+=================================+\n";
+							ask:
+							cout<<"Input Data Barang Selanjutnya ? (y/t) : ";cin>>lagi;
+							if (lagi=='y' || lagi=='Y')
+								{
+									goto ma1;
+								}
+							else if (lagi=='t' || lagi=='T')
+								{
+									goto m_a;
+								}
+							else
+								{
+									cout<<"Input salah !!! \n";
+									goto ask;
+								}
+							getch();
+						}
+						case 2:
+						{
+							ma2:
+							system("cls");
+							cout<<"+===========================================+\n";
+							cout<<"|                 List Barang               |\n";
+							cout<<"+===========================================+\n";
+							for (n=0;n<=a;n++)
+								{
+									cout<<"No.              : "<<(n+1)<<endl;
+									cout<<"Kode Barang      : "<<id[n].kode<<endl;
+									cout<<"Nama Barang      : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+
+									cout<<"+===========================================+\n";
+
+								}
+							ask1:
+							cout<<"\nLihat Detail Barang ? (y/t) : ";cin>>jawab;
+							if (jawab=='y' || jawab=='Y')
+								 {	nomo_rek:
+									cout<<"\nMasukkan Kode untuk detail Barang : ";cin>>input;
+									for (n=0;n<=a;n++)
+									{
+										if (input==id[n].kode)
+										{	system("cls");
+											cout<<"+==================================+\n";
+											cout<<"|        Detail Data Barang        |\n";
+											cout<<"+==================================+\n";
+											cout<<"Kode Barang      : "<<id[n].kode<<endl;
+											cout<<"Nama Barang      : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+											cout<<"Jenis Barang     : "<<id[n].j_b<<endl;
+											cout<<"Jumlah Barang    : "<<id[n].isi<<endl;
+											cout<<"Kapasitas Gudang : "<<id[n].kapasitas<<endl;
+											cout<<"=================================================\n";
+											ask2:
+											cout<<"\nKembali ke List Barang ? (y/t) : ";cin>>jawab;
+											if (jawab=='y' || jawab=='Y')
+												{
+													goto ma2;
+												}
+											else if (jawab=='t' || jawab=='T')
+												{
+													goto m_a;
+												}
+											else
+												{
+													cout<<"\n+=================+";
+													cout<<"\n| Input Salah !!! |";
+													cout<<"\n+=================+";
+													goto ask2;
+												}
+										}
+									}
+									cout<<"\nKode Salah !!!\n";
+									goto nomo_rek;
+								}
+							else if (jawab=='t' || jawab=='T')
+								{
+									goto m_a;
+								}
+							else
+								{
+									cout<<"\nInput Salah !!!";
+									goto ask1;
+								}
+							getch();
+
+							}
+					 case 3:
+						{
+							system("cls");
+						cout<<"+===================================+\n";
+							cout<<"|  Laporan Masuk dan Keluar Barang  |\n";
+						cout<<"+===================================+\n";
+							cout<<"  \n";
+							for (n=0;n<=a;n++)
+					cout<<"+===========================================+\n";
+					cout<<"No.                   : "<<(n+1)<<endl;
+					cout<<"Kode Barang           : "<<id[n].kode<<endl;								cout<<"Nama Barang           : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+					cout<<"Barang Masuk          : "<<id[n].t_s<<endl;
+					cout<<"Barang Keluar         : "<<id[n].t_t<<endl;
+					cout<<"Jumlah Barang         : "<<id[n].isi<<endl;
+					cout<<"Sisa Kapasitas Gudang : "<<id[n].kapasitas<<endl;
+					cout<<" \n";
+					cout<<"+===========================================+\n";
+					}
+
+					cetak:
+							cout<<"\nCetak Laporan ? (y/t) : ";cin>>jawab;
+								{
+									if (jawab=='y'||jawab=='Y')
+										{
+											system("cls");
+										for (n=0;n<=a;n++)
+		{
+												cout<<"================================================================================\n";
+												cout<<"     No.                   : "<<(n+1)<<endl;
+                  cout<<"     Kode Barang           : "<<id[n].kode<<endl;
+                  cout<<"     Nama Barang           : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+                  cout<<"     Barang Masuk          : "<<id[n].t_s<<endl;
+                  cout<<"     Barang Keluar         : "<<id[n].t_t<<endl;
+                  cout<<"     Jumlah Barang         : "<<id[n].isi<<endl;
+                  cout<<"     Sisa Kapasitas Gudang : "<<id[n].kapasitas<<endl;
+                  cout<<" \n";
+												cout<<"================================================================================\n";
+		}
+		}
+		else if (jawab=='t'||jawab=='T')
+		{
+			goto m_a;
+		}
+		else
+		{
+		cout<<"\nInput Salah !!!";										goto cetak;
+		}
+		}	
+	tanya1:
+		cout<<"\nKeterangan :";
+		cout<<"\n(Y/y) = untuk kembali ke menu admin gudang";
+		cout<<"\n(T/t) = untuk kembali ke menu utama";
+		cout<<"\nKembali Ke Menu Admin ? (y/t) : ";cin>>jawab;
+		if (jawab=='y' || jawab=='Y')
+		{
+		goto m_a;
+		}
+		else if (jawab=='t' || jawab=='T')
+		{
+		goto menu;
+		}
+		else
+		{
+		cout<<"\nPilihan tidak ada !!!\n";
+		goto tanya1;
+		}
+		getch();
+		}
+		case 4:
+		{
+			goto menu;
+			getch();
+		}
+		default: cout<<"\nMenu yang dipilih tidak ada !!!\n";
+		goto tanya;
+		getch();
+		 }
+ 		getch();
+	  }
+  	if (menu==2)
+		{
+			system("cls");
+			awal:
+            cout<<"+==========================================+\n";
+            cout<<"|               List Barang                |\n";
+            cout<<"+==========================================+\n";
+            cout<<" No.  Kode Barang          Nama Barang      \n";
+
+            for (n=0;n<=a;n++)
+            {
+                cout<<setiosflags(ios::left)<<"  "<<n+1<<setw(4);
+                cout<<setiosflags(ios::left)<<" "<<setw(18)<<id[n].kode;
+                cout<<setiosflags(ios::left)<<" "<<setw(1)<<id[n].nama;
+                cout<<setiosflags(ios::left)<<" "<<setw(1)<<id[n].nama_merk<<endl;
+
+            }
+            cout<<"\n+===========================================+\n";
+			cout<<"\nMasukan Kode Barang     : ";cin>>input;
+			for (n=0;n<=a;n++)
+				{
+					if (input==id[n].kode)
+					{
+						m_n:
+  						system("cls");
+  						mn:
+		  				cout<<"\n+==================================+\n";
+						cout<<"|            Info Barang           |\n";
+						cout<<"|==================================|\n";
+						cout<<"| 1. Barang Masuk                  |\n";
+						cout<<"| 2. Barang Keluar                 |\n";
+						cout<<"| 3. Cek Jumlah Barang             |\n";
+						cout<<"| 4. Exit                          |\n";
+						cout<<"+==================================+\n";
+						cout<<"\n";
+						cout<<"\nMasukan Pilihan 1/2/3/4 : ";cin>>mn;
+						switch (mn)
+							{
+								case 1:
+								{
+									system("cls");
+							cout<<"+=================================+\n";
+							cout<<"|            Barang Masuk         |\n";
+							cout<<"+=================================+\n";
+							cout<<"\n";
+								{
+								{
+						cout<<"+==================================+\n";
+						cout<<"|        Detail Data Barang        |\n";
+						cout<<"+==================================+\n";
+						cout<<"Kode Barang       : "<<id[n].kode<<endl;
+					cout<<"Nama Barang       : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;					cout<<"Jenis Barang      : "<<id[n].j_b<<endl;
+					cout<<"Jumlah Barang     : "<<id[n].isi<<endl;
+					cout<<"Kapasitas Gudang  : "<<id[n].kapasitas<<endl;
+					cout<<"\n";
+												cout<<"Masukan Jumlah Barang yang masuk ke gudang : ";cin>>id[n].kirim;
+												cout<<"\n";
+		{
+		if (id[n].kirim>id[n].kapasitas)
+		{	system("cls");
+		cout<<"+=================================================+\n";
+		cout<<"|    Maaf Pemasukan Barang tidak dapat di proses  |\n";
+		cout<<"|         Karena Melebihi Kapasitas Gudang        |\n";
+		cout<<"+=================================================+\n";
+		}
+													else
+														{	id[n].isi=id[n].kirim+id[n].isi;
+															id[n].t_s=id[n].kirim+id[n].t_s;
+															id[n].kapasitas=id[n].kapasitas-id[n].isi;
+															system("cls");
+															cout<<"+=================================+\n";
+															cout<<"|    Pemasukan berhasil diproses  |\n";
+															cout<<"+=================================+\n";
+															cout<<"\n"<<endl;
+															cout<<"Jumlah Barang    : "<<id[n].isi<<endl;
+															cout<<"Kapasitas Gudang : "<<id[n].kapasitas;
+															cout<<"\n"<<endl;
+														}
+												}
+											}
+										}
+	tanya2:
+	cout<<"\n (Y/y) = Kembali Ke Menu Data Barang";							cout<<"\n (T/t) = Kembali Ke Menu Utama";
+	cout<<"\nKembali Ke Menu Data Barang ? (y/t) : ";cin>>jawab;
+	if (jawab=='y' || jawab=='Y')
+	{
+	goto m_n;
+	}
+	if (jawab=='t' || jawab=='T')
+  	{
+	goto menu;
+	}
+	else
+	{
+	cout<<"\nPilihan tidak ada !!!\n";
+	goto tanya2;
+	}
+	getch();
+	}
+	case 2:
+	{
+	system("cls");
+	cout<<"+=================================+\n";
+	cout<<"|             Pengeluaran         |\n";
+	cout<<"+=================================+\n";
+	cout<<"\n";
+	{
+		{
+		cout<<"+==================================+\n";
+		cout<<"|        Detail Data Barang        |\n";
+		cout<<"+==================================+\n";
+		cout<<"Kode Barang       : "<<id[n].kode<<endl;
+		cout<<"Nama Barang       : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+		cout<<"Jenis Barang      : "<<id[n].j_b<<endl;
+		cout<<"Jumlah Barang     : "<<id[n].isi<<endl;
+		cout<<"Kapasitas Gudang  : "<<id[n].kapasitas<<endl;
+		cout<<"\n";
+		cout<<"Masukan Jumlah Barang yang akan dikeluarkan : ";cin>>id[n].keluar;
+		cout<<"\n";
+		if (id[n].isi-id[n].keluar<0)
+		{ system("cls");
+		cout<<"+=====================================+\n";
+		cout<<"|   Maaf Jumlah Barang Yang Tersedia  |\n";
+		cout<<"|            TIDAK MENCUKUPI          |\n";
+		cout<<"+=====================================+\n";
+		}
+		else
+		{
+		id[n].isi=id[n].isi-id[n].keluar;
+		id[n].t_t=id[n].keluar+id[n].t_t;
+		id[n].kapasitas=id[n].kapasitas+id[n].keluar;
+		system("cls");
+		cout<<"+=================================+\n";
+		cout<<"|       Pengeluaran  Barang       |\n";
+		cout<<"|        Berhasil Diproses        |\n";
+		cout<<"+=================================+\n";							cout<<"\n"<<endl;
+		cout<<"Sisa Barang di Gudang : "<<id[n].isi<<endl;
+		cout<<"Kapasitas Gudang      : "<<id[n].kapasitas;
+															cout<<"\n"<<endl;
+														}
+												}
+										}
+									tanya3:
+									cout<<"\n (Y/y) = Kembali Ke Menu Data Barang";
+									cout<<"\n (T/t) = Kembali Ke Menu Utama";
+									cout<<"\nKembali Ke Menu Nasabah ? (y/t) : ";cin>>jawab;
+									if (jawab=='y' || jawab=='Y')
+										{
+											goto m_n;
+										}
+									if (jawab=='t' || jawab=='T')
+										{
+											goto menu;
+										}
+									else
+										{
+											cout<<"\nPilihan tidak ada !!!\n";
+											goto tanya3;
+										}
+									getch();
+								}
+								case 3:
+								{
+									system("cls");
+									cout<<"+=================================+\n";
+									cout<<"|          Jumlah Barang          |\n";
+									cout<<"+=================================+\n";
+										{
+												{
+													cout<<"\n+====================================+\n";
+													cout<<"|        Detail Info Barang          |\n";
+													cout<<"+====================================+\n";
+													cout<<"\n";
+													cout<<"Kode Barang      : "<<id[n].kode<<endl;
+													cout<<"Nama Barang      : "<<id[n].nama<<" "<<id[n].nama_merk<<endl;
+													cout<<"Jenis Barang     : "<<id[n].j_b<<endl;
+													cout<<"Jumlah Barang    : "<<id[n].isi<<endl;
+													cout<<"Kapasitas Gudang : "<<id[n].kapasitas<<endl;
+												}
+										}
+									tanya4:
+									cout<<"\n (Y/y) = Kembali Ke Menu Data Barang";
+									cout<<"\n (T/t) = Kembali Ke Menu Utama";
+									cout<<"\nKembali Ke Menu Data Barang ? (y/t) : ";cin>>jawab;
+									if (jawab=='y' || jawab=='Y')
+										{
+											goto m_n;
+										}
+									if (jawab=='t' || jawab=='T')
+										{
+											goto menu;
+										}
+									else
+										{
+											cout<<"\nPilihan tidak ada !!!\n";
+											goto tanya4;
+										}
+									getch();
+								}
+								case 4:
+								{
+									goto menu;
+								}
+							default:
+								{
+									cout<<"Menu yang anda pilih tidak ada !!!\n";
+									goto mn;
+								}
+							getch();
+							}
+					}
+				}
+				cout<<"\nKODE SALAH !!!\n";
+
+                              akhir:
+									cout<<"\nInput Ulang Kode ? (y/t) : ";cin>>jawab;
+									if (jawab=='y' || jawab=='Y')
+										{
+											goto awal;
+										}
+									if (jawab=='t' || jawab=='T')
+										{
+											goto menu;
+										}
+									else
+										{
+											cout<<"\nPilihan tidak ada !!!\n";
+											goto akhir;
+										}
+									getch();
+		}
+  	else if (menu>3)
+  		{
+		  	cout<<"\nMenu yang dipilih tidak ada !!!\n";
+		  	goto m;
+		  }
+	}
+
+return 0;
